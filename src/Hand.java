@@ -2,6 +2,8 @@ import java.util.ArrayList;
 
 public class Hand {
 	private ArrayList<Card> cards;
+	private Suit suit;
+	private Rank rank;
 	
 	//Constructor
 	public Hand() {
@@ -21,4 +23,12 @@ public class Hand {
 		return str;
 	}
 
+@Override
+public String toString() {
+	StringBuilder sb = new StringBuilder();
+	for(Card c : cards) {
+		sb.append(c.toString()).append(", ");
+	}
+	return sb.toString();
+}
 }
