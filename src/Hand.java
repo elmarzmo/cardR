@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Hand {
 	private ArrayList<Card> cards;
@@ -21,6 +22,24 @@ public class Hand {
 			str +=c.toString();
 		}
 		return str;
+	}
+	public Card chooseCard() {
+		Scanner scanner = new Scanner(System.in);
+		 while(true) {
+			 
+			 System.out.println("Choose a card from your hand:");
+			 String chosenCard = scanner.nextLine();
+			  //fine the card in hand
+			 for(Card c :cards) {
+				 if(c.toString().equalsIgnoreCase(chosenCard)) {
+					 cards.remove(c);
+				 return c;
+				 }
+			 }
+			  // If the card is not found, notify the user and let them try again
+	            System.out.println("Invalid choice. Please choose a card from your hand.");
+		 }
+		 
 	}
 
 @Override
