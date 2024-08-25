@@ -23,6 +23,7 @@ public class Hand {
 		}
 		return str;
 	}
+	
 	public Card chooseCard() {
 		Scanner scanner = new Scanner(System.in);
 		 while(true) {
@@ -38,6 +39,7 @@ public class Hand {
 			 }
 			  // If the card is not found, notify the user and let them try again
 	            System.out.println("Invalid choice. Please choose a card from your hand.");
+	            scanner.close();
 		 }
 		 
 	}

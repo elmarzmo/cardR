@@ -16,18 +16,46 @@ public class Round {
 			this.player2Score = player2Score;
 	}
 	public void play() {
+		
 		for(int i=0; i<4; i++) {
 			player1Hand.add(deck.dealCard());
 			player2Hand.add(deck.dealCard());
 		}
-		 System.out.println("Player 1's hand: " + player1Hand);
-	     System.out.println("Player 2's hand: " + player2Hand);
+		
 	     for(int i =0; i<4;i++) {
-	    	table.add( player1Hand.chooseCard());
-	    	table.add( player2Hand.chooseCard());
+	    	 
 	     }
-	     System.out.println("Player 1's hand: " + player1Hand);
-	     System.out.println("table has: " + table);
+	}
+	private void playCard(Hand playerHand, int playerNum) {
+
+		Card cardToPlay = playerHand.chooseCard();
+		//Remove the card from the players hand
+		playerHand.remove(cardToPlay);
+		
+		//check if the card can eat any cards on the table
+		for(Card tableCard : new ArrayList<>(table.getCards())) {
+			if(cardToPlay.getRank()==tableCard.getRank()) {
+			rec(playerNum, cardToPlay, tableCard);
+			}
+		}
+		
+	}
+	private void rec(int playerNum, Card cardToPlay, Card tableCard) {
+		increaseScore(playerNum);
+		table.remove(tableCard);
+		if(cardToPlay.getRank()+1==tableCard.getRank()) {
+			rec( playerNum,  cardToPlay,  tableCard);
+		}
+		
+		}
+	}
+	
+	private void increaseScore(int playerNumber,int points) {
+		if(playerNumber == 1) {
+			player1Score+=points;
+		}else if(playerNumber ==2){
+			player2Score+=points;
+		}
 	}
 
 }
