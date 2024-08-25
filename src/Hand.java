@@ -16,6 +16,15 @@ public class Hand {
 	public void add(Card card) {
 		cards.add(card);
 	}
+	public boolean isEmpty() {
+		return cards.isEmpty();
+	}
+	public void remove(Card card) {
+		cards.remove(card);
+	}
+	public ArrayList<Card> getCards() {
+		return cards;
+	}
 	public String showHand() {
 		String str="";
 		for(Card c:cards) {

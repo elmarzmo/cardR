@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class Round {
 	private Deck deck;
@@ -6,14 +7,15 @@ public class Round {
 	private Hand table;
 	private int player1Score;
 	private int player2Score;
-	
+	private int points;
 	public Round(Deck deck, Hand player1Hand, Hand player2Hand, Hand table, int player1Score, int player2Score) {
 			this.deck = deck;
 			this.player1Hand= player1Hand;
 			this.player2Hand = player2Hand;
 			this.table = table;
-			this.player1Score = player1Score;
-			this.player2Score = player2Score;
+			this.player1Score = 0;
+			this.player2Score = 0;
+			this.points =0;
 	}
 	public void play() {
 		
@@ -22,33 +24,48 @@ public class Round {
 			player2Hand.add(deck.dealCard());
 		}
 		
-	     for(int i =0; i<4;i++) {
-	    	 
+	     while(!player1Hand.isEmpty() || !player2Hand.isEmpty()) {
+	    	 playTurn(player1Hand, 1);
+	    	 if(player2Hand.isEmpty()) {
+	    		 break;
+	    	 }
+	    	 playTurn(player2Hand,2);
 	     }
+	     declareWinner();
 	}
-	private void playCard(Hand playerHand, int playerNum) {
+	private void playTurn(Hand playerHand, int playerNum) {
 
+		System.out.println("Player "+ playerNum + "'s turn. Your hand: "+ playerHand);
+		
 		Card cardToPlay = playerHand.chooseCard();
 		//Remove the card from the players hand
 		playerHand.remove(cardToPlay);
-		
+		table.add(cardToPlay);
+		System.out.println("Current table: "+ table.getCards());
 		//check if the card can eat any cards on the table
+		
 		for(Card tableCard : new ArrayList<>(table.getCards())) {
 			if(cardToPlay.getRank()==tableCard.getRank()) {
+				
 			rec(playerNum, cardToPlay, tableCard);
 			}
 		}
 		
 	}
 	private void rec(int playerNum, Card cardToPlay, Card tableCard) {
-		increaseScore(playerNum);
+		
+
+		ArrayList<Card> cardsToEat = new ArrayList<>();
+		points=+1;
+		increaseScore(playerNum, points);
+		cardsToEat.add(tableCard);
 		table.remove(tableCard);
 		if(cardToPlay.getRank()+1==tableCard.getRank()) {
 			rec( playerNum,  cardToPlay,  tableCard);
 		}
 		
 		}
-	}
+	
 	
 	private void increaseScore(int playerNumber,int points) {
 		if(playerNumber == 1) {
@@ -58,4 +75,20 @@ public class Round {
 		}
 	}
 
+
+
+	private void declareWinner() {
+		System.out.println("End of the round!");
+		System.out.println("Player 1 Score: "+ player1Score);
+		System.out.println("Player 2 Score: "+ player2Score);
+		
+		if(player1Score > player2Score) {
+			System.out.println("Player 1 wins!!");
+		}else if(player2Score > player1Score) {
+			System.out.println("Player 2 win!!");
+		}
+		else if(player1Score == player2Score) {
+			System.out.println("it's a tie!");
+		}
+	}
 }
