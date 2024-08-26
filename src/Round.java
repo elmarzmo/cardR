@@ -18,7 +18,7 @@ public class Round {
 			this.points =0;
 	}
 	public void play() {
-		
+
 		for(int i=0; i<4; i++) {
 			player1Hand.add(deck.dealCard());
 			player2Hand.add(deck.dealCard());
@@ -40,6 +40,7 @@ public class Round {
 		Card cardToPlay = playerHand.chooseCard();
 		//Remove the card from the players hand
 		playerHand.remove(cardToPlay);
+		boolean matchFound =false;
 		
 	
 		//check if the card can eat any cards on the table
@@ -48,13 +49,16 @@ public class Round {
 			if(cardToPlay.getRank()==tableCard.getRank()) {
 				
 			rec(playerNum, cardToPlay, tableCard);
+			matchFound = true;
 			}
 				
 			
 				
 			
 		}
+		if(!matchFound) {
 		table.add(cardToPlay);
+		}
 	}
 	private void rec(int playerNum, Card cardToPlay, Card tableCard) {
 		
@@ -65,9 +69,11 @@ public class Round {
 		if(!cardsToEat.contains(cardToPlay)) {
 			cardsToEat.add(cardToPlay);
 		}
-		cardsToEat.add(tableCard);
+	//	cardsToEat.add(tableCard);
 		
 		table.remove(tableCard);
+		
+		
 		
 		if(cardToPlay.getRank()+1==tableCard.getRank()) {
 			rec( playerNum,  cardToPlay,  tableCard);
