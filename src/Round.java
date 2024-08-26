@@ -43,12 +43,14 @@ public class Round {
 		
 	
 		//check if the card can eat any cards on the table
-		table.add(cardToPlay);
+		
 		for(Card tableCard : new ArrayList<>(table.getCards())) {
 			if(cardToPlay.getRank()==tableCard.getRank()) {
 				
 			rec(playerNum, cardToPlay, tableCard);
 			}
+				
+			
 				
 			
 		}
