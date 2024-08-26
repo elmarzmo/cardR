@@ -76,7 +76,9 @@ public class Round {
 		
 		
 		if(cardToPlay.getRank()+1==tableCard.getRank()) {
-			rec( playerNum,  cardToPlay,  tableCard);
+			
+			rec( playerNum, table.getCard(cardToPlay.getRank()+1),  tableCard);
+			
 		}
 		
 		}

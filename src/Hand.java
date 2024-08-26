@@ -32,6 +32,15 @@ public class Hand {
 		}
 		return str;
 	}
+	public Card getCard(int Rank) {
+	
+		for(Card card: cards) {
+			if(card.getRank()== Rank) {
+				return card;
+			}
+		}
+		return null;
+	}
 	
 	public Card chooseCard() {
 		Scanner scanner = new Scanner(System.in);

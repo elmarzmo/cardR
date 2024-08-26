@@ -18,6 +18,7 @@ public class Card {
 		return rank.getRank();
 	}
 	
+	
 	@Override
 	public String toString() {
 		String str= rank.getRank() +" of " +suit.getSuit();
