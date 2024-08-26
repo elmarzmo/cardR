@@ -36,30 +36,37 @@ public class Round {
 	private void playTurn(Hand playerHand, int playerNum) {
 
 		System.out.println("Player "+ playerNum + "'s turn. Your hand: "+ playerHand);
-		
+		System.out.println("Current table: "+ table);
 		Card cardToPlay = playerHand.chooseCard();
 		//Remove the card from the players hand
 		playerHand.remove(cardToPlay);
-		table.add(cardToPlay);
-		System.out.println("Current table: "+ table.getCards());
-		//check if the card can eat any cards on the table
 		
+	
+		//check if the card can eat any cards on the table
+		table.add(cardToPlay);
 		for(Card tableCard : new ArrayList<>(table.getCards())) {
 			if(cardToPlay.getRank()==tableCard.getRank()) {
 				
 			rec(playerNum, cardToPlay, tableCard);
 			}
+				
+			
 		}
-		
+		table.add(cardToPlay);
 	}
 	private void rec(int playerNum, Card cardToPlay, Card tableCard) {
 		
 
 		ArrayList<Card> cardsToEat = new ArrayList<>();
-		points=+1;
-		increaseScore(playerNum, points);
+		
+		increaseScore(playerNum, cardsToEat);
+		if(!cardsToEat.contains(cardToPlay)) {
+			cardsToEat.add(cardToPlay);
+		}
 		cardsToEat.add(tableCard);
+		
 		table.remove(tableCard);
+		
 		if(cardToPlay.getRank()+1==tableCard.getRank()) {
 			rec( playerNum,  cardToPlay,  tableCard);
 		}
@@ -67,11 +74,11 @@ public class Round {
 		}
 	
 	
-	private void increaseScore(int playerNumber,int points) {
+	private void increaseScore(int playerNumber,ArrayList<Card> points) {
 		if(playerNumber == 1) {
-			player1Score+=points;
+			player1Score+=points.size();
 		}else if(playerNumber ==2){
-			player2Score+=points;
+			player2Score+=points.size();
 		}
 	}
 
