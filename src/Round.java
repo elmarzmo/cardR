@@ -65,7 +65,7 @@ public class Round {
 
 		ArrayList<Card> cardsToEat = new ArrayList<>();
 		
-		increaseScore(playerNum, cardsToEat);
+		
 		if(!cardsToEat.contains(cardToPlay)) {
 			cardsToEat.add(cardToPlay);
 		}
@@ -74,12 +74,13 @@ public class Round {
 		table.remove(tableCard);
 		
 		
-		
-		if(cardToPlay.getRank()+1==tableCard.getRank()) {
+		Card nextCard = table.getCard(tableCard.getRank()+1);
+		if(nextCard != null && cardToPlay.getRank()==nextCard.getRank()) {
 			
-			rec( playerNum, table.getCard(cardToPlay.getRank()+1),  tableCard);
+			rec( playerNum, nextCard,  tableCard);
 			
 		}
+		increaseScore(playerNum, cardsToEat);
 		
 		}
 	
