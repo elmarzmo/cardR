@@ -7,8 +7,8 @@ public class Round {
 	private Hand table;
 	private int player1Score;
 	private int player2Score;
-	private ArrayList<Card> cardsToEat = new ArrayList<>();
-
+	public ArrayList<Card> eatenCardPlayer1 = new ArrayList<>();
+	public ArrayList<Card> eatenCardPlayer2 = new ArrayList<>();
 	public Round(Deck deck, Hand player1Hand, Hand player2Hand, Hand table, int player1Score, int player2Score) {
 			this.deck = deck;
 			this.player1Hand= player1Hand;
@@ -66,14 +66,22 @@ public class Round {
 
 		
 		
-		
-		if(!cardsToEat.contains(cardToPlay)) {
-			cardsToEat.add(cardToPlay);
+		if(playerNum == 1) {
+		if(!eatenCardPlayer1.contains(cardToPlay)) {
+			eatenCardPlayer1.add(cardToPlay);
 		}
-		if(!cardsToEat.contains(tableCard)) {
-		cardsToEat.add(tableCard);
+		if(!eatenCardPlayer1.contains(tableCard)) {
+			eatenCardPlayer1.add(tableCard);
 		}
-		
+		}
+		else if(playerNum == 2) {
+			if(!eatenCardPlayer2.contains(cardToPlay)) {
+				eatenCardPlayer2.add(cardToPlay);
+			}
+			if(!eatenCardPlayer2.contains(tableCard)) {
+				eatenCardPlayer2.add(tableCard);
+			}
+			}
 		table.remove(tableCard);
 		
 		
@@ -84,32 +92,25 @@ public class Round {
 			rec( playerNum, nextCard,  nextCard);
 			
 		}
-		increaseScore(playerNum, cardsToEat);
-		System.out.println("eaten cards: "+ cardsToEat);
+		
 		}
 	
 	
-	private void increaseScore(int playerNumber,ArrayList<Card> points) {
-		if(playerNumber == 1) {
-			player1Score+=points.size();
-		}else if(playerNumber ==2){
-			player2Score+=points.size();
-		}
-	}
+	
 
 
 
 	private void declareWinner() {
 		System.out.println("End of the round!");
-		System.out.println("Player 1 Score: "+ player1Score);
-		System.out.println("Player 2 Score: "+ player2Score);
+		System.out.println("Player 1 Score: "+ eatenCardPlayer1.size());
+		System.out.println("Player 2 Score: "+ eatenCardPlayer1.size());
 		
-		if(player1Score > player2Score) {
+		if(eatenCardPlayer1.size() > eatenCardPlayer2.size()) {
 			System.out.println("Player 1 wins!!");
-		}else if(player2Score > player1Score) {
+		}else if(eatenCardPlayer2.size() > eatenCardPlayer1.size()) {
 			System.out.println("Player 2 win!!");
 		}
-		else if(player1Score == player2Score) {
+		else if(eatenCardPlayer1.size() == eatenCardPlayer2.size()) {
 			System.out.println("it's a tie!");
 		}
 	}
