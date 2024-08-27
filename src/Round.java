@@ -5,17 +5,14 @@ public class Round {
 	private Hand player1Hand;
 	private Hand player2Hand;
 	private Hand table;
-	private int player1Score;
-	private int player2Score;
-	public ArrayList<Card> eatenCardPlayer1 = new ArrayList<>();
-	public ArrayList<Card> eatenCardPlayer2 = new ArrayList<>();
+		private ArrayList<Card> eatenCardPlayer1 = new ArrayList<>();
+	private ArrayList<Card> eatenCardPlayer2 = new ArrayList<>();
 	public Round(Deck deck, Hand player1Hand, Hand player2Hand, Hand table, int player1Score, int player2Score) {
 			this.deck = deck;
 			this.player1Hand= player1Hand;
 			this.player2Hand = player2Hand;
 			this.table = table;
-			this.player1Score = 0;
-			this.player2Score = 0;
+			
 			
 	}
 	public void play() {
@@ -103,7 +100,7 @@ public class Round {
 	private void declareWinner() {
 		System.out.println("End of the round!");
 		System.out.println("Player 1 Score: "+ eatenCardPlayer1.size());
-		System.out.println("Player 2 Score: "+ eatenCardPlayer1.size());
+		System.out.println("Player 2 Score: "+ eatenCardPlayer2.size());
 		
 		if(eatenCardPlayer1.size() > eatenCardPlayer2.size()) {
 			System.out.println("Player 1 wins!!");
