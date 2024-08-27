@@ -7,7 +7,7 @@ public class Round {
 	private Hand table;
 	private int player1Score;
 	private int player2Score;
-	private int points;
+
 	public Round(Deck deck, Hand player1Hand, Hand player2Hand, Hand table, int player1Score, int player2Score) {
 			this.deck = deck;
 			this.player1Hand= player1Hand;
@@ -15,7 +15,7 @@ public class Round {
 			this.table = table;
 			this.player1Score = 0;
 			this.player2Score = 0;
-			this.points =0;
+			
 	}
 	public void play() {
 
@@ -75,9 +75,10 @@ public class Round {
 		
 		
 		Card nextCard = table.getCard(tableCard.getRank()+1);
-		if(nextCard != null && cardToPlay.getRank()==nextCard.getRank()) {
+		System.out.println("next card: "+ nextCard);
+		if(nextCard != null && cardToPlay.getRank()+1==nextCard.getRank()) {
 			
-			rec( playerNum, nextCard,  tableCard);
+			rec( playerNum, nextCard,  nextCard);
 			
 		}
 		increaseScore(playerNum, cardsToEat);
