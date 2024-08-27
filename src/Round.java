@@ -7,6 +7,7 @@ public class Round {
 	private Hand table;
 	private int player1Score;
 	private int player2Score;
+	private ArrayList<Card> cardsToEat = new ArrayList<>();
 
 	public Round(Deck deck, Hand player1Hand, Hand player2Hand, Hand table, int player1Score, int player2Score) {
 			this.deck = deck;
@@ -63,26 +64,28 @@ public class Round {
 	private void rec(int playerNum, Card cardToPlay, Card tableCard) {
 		
 
-		ArrayList<Card> cardsToEat = new ArrayList<>();
+		
 		
 		
 		if(!cardsToEat.contains(cardToPlay)) {
 			cardsToEat.add(cardToPlay);
 		}
-	//	cardsToEat.add(tableCard);
+		if(!cardsToEat.contains(tableCard)) {
+		cardsToEat.add(tableCard);
+		}
 		
 		table.remove(tableCard);
 		
 		
 		Card nextCard = table.getCard(tableCard.getRank()+1);
-		System.out.println("next card: "+ nextCard);
+		
 		if(nextCard != null && cardToPlay.getRank()+1==nextCard.getRank()) {
 			
 			rec( playerNum, nextCard,  nextCard);
 			
 		}
 		increaseScore(playerNum, cardsToEat);
-		
+		System.out.println("eaten cards: "+ cardsToEat);
 		}
 	
 	
