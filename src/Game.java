@@ -16,8 +16,10 @@ public class Game {
 		table = new Hand();
 	}
 	public void start() {
+		
 		Round round1 = new Round(deck, player1Hand, player2Hand, table, player1Score, player2Score);
 		round1.play();
+		
 	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

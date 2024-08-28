@@ -5,6 +5,8 @@ public class Round {
 	private Hand player1Hand;
 	private Hand player2Hand;
 	private Hand table;
+	private int player1Score;
+	private int player2Score;
 		private ArrayList<Card> eatenCardPlayer1 = new ArrayList<>();
 	private ArrayList<Card> eatenCardPlayer2 = new ArrayList<>();
 	public Round(Deck deck, Hand player1Hand, Hand player2Hand, Hand table, int player1Score, int player2Score) {
@@ -12,11 +14,14 @@ public class Round {
 			this.player1Hand= player1Hand;
 			this.player2Hand = player2Hand;
 			this.table = table;
+			this.player1Score = player1Score;
+			this.player2Score =  player2Score;
 			
 			
 	}
 	public void play() {
-
+		for(int j =0; j<5; j++) {
+			System.out.println("Round: "+(j+1));
 		for(int i=0; i<4; i++) {
 			player1Hand.add(deck.dealCard());
 			player2Hand.add(deck.dealCard());
@@ -29,10 +34,14 @@ public class Round {
 	    	 }
 	    	 playTurn(player2Hand,2);
 	     }
+	     System.out.println("Player 1 Score: "+ eatenCardPlayer1.size());
+		 System.out.println("Player 2 Score: "+ eatenCardPlayer2.size());
+		}
 	     declareWinner();
+	
 	}
 	private void playTurn(Hand playerHand, int playerNum) {
-
+		
 		System.out.println("Player "+ playerNum + "'s turn. Your hand: "+ playerHand);
 		System.out.println("Current table: "+ table);
 		Card cardToPlay = playerHand.chooseCard();
@@ -57,6 +66,7 @@ public class Round {
 		if(!matchFound) {
 		table.add(cardToPlay);
 		}
+	
 	}
 	private void rec(int playerNum, Card cardToPlay, Card tableCard) {
 		
