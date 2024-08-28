@@ -7,8 +7,10 @@ public class Round {
 	private Hand table;
 	private int player1Score;
 	private int player2Score;
-		private ArrayList<Card> eatenCardPlayer1 = new ArrayList<>();
+	boolean lastToEat = true;
+	private ArrayList<Card> eatenCardPlayer1 = new ArrayList<>();
 	private ArrayList<Card> eatenCardPlayer2 = new ArrayList<>();
+	
 	public Round(Deck deck, Hand player1Hand, Hand player2Hand, Hand table, int player1Score, int player2Score) {
 			this.deck = deck;
 			this.player1Hand= player1Hand;
@@ -16,6 +18,7 @@ public class Round {
 			this.table = table;
 			this.player1Score = player1Score;
 			this.player2Score =  player2Score;
+			
 			
 			
 	}
@@ -36,7 +39,22 @@ public class Round {
 	     }
 	     System.out.println("Player 1 Score: "+ eatenCardPlayer1.size());
 		 System.out.println("Player 2 Score: "+ eatenCardPlayer2.size());
+		 if(j==4 && player1Hand.isEmpty() ) {
+			 if(eatenCardPlayer2.isEmpty()) {
+				 lastToEat =true; 
+			 }
+			if(lastToEat) {
+				for(Card c:new ArrayList<>(table.getCards())) {
+				eatenCardPlayer1.add( c);
+				}
+			}else if(!lastToEat) {
+				for(Card c:new ArrayList<>(table.getCards())) {
+					eatenCardPlayer2.add( c);
+					}
+			}
+		 }
 		}
+		
 	     declareWinner();
 	
 	}
@@ -48,6 +66,7 @@ public class Round {
 		//Remove the card from the players hand
 		playerHand.remove(cardToPlay);
 		boolean matchFound =false;
+		
 		
 	
 		//check if the card can eat any cards on the table
@@ -76,6 +95,8 @@ public class Round {
 		if(playerNum == 1) {
 		if(!eatenCardPlayer1.contains(cardToPlay)) {
 			eatenCardPlayer1.add(cardToPlay);
+			lastToEat = true;
+			
 		}
 		if(!eatenCardPlayer1.contains(tableCard)) {
 			eatenCardPlayer1.add(tableCard);
@@ -84,6 +105,8 @@ public class Round {
 		else if(playerNum == 2) {
 			if(!eatenCardPlayer2.contains(cardToPlay)) {
 				eatenCardPlayer2.add(cardToPlay);
+				lastToEat = false;
+				
 			}
 			if(!eatenCardPlayer2.contains(tableCard)) {
 				eatenCardPlayer2.add(tableCard);
