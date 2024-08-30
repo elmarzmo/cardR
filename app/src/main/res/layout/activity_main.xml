@@ -18,7 +18,7 @@
 
 
         <ImageView
-            android:id="@+id/card_p1_1"
+            android:id="@+id/cardP1_1"
             android:layout_width="0dp"
             android:layout_height="150dp"
             android:layout_weight="1"
@@ -27,7 +27,7 @@
         </ImageView>
 
         <ImageView
-            android:id="@+id/card_p1_2"
+            android:id="@+id/cardP1_2"
             android:layout_width="0dp"
             android:layout_height="150dp"
             android:layout_weight="1"
@@ -35,7 +35,7 @@
 
         </ImageView>
         <ImageView
-            android:id="@+id/card_p1_3"
+            android:id="@+id/cardP1_3"
             android:layout_width="0dp"
             android:layout_height="150dp"
             android:layout_weight="1"
@@ -44,7 +44,7 @@
         </ImageView>
 
         <ImageView
-            android:id="@+id/card_p1_4"
+            android:id="@+id/cardP1_4"
             android:layout_width="0dp"
             android:layout_height="150dp"
             android:layout_weight="1"
@@ -71,7 +71,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/card_p2_1"
+            android:id="@+id/cardP2_1"
             android:layout_width="100dp"
             android:layout_height="150dp"
             android:scaleType="centerInside"
@@ -81,7 +81,7 @@
 
         </ImageView>
         <ImageView
-            android:id="@+id/card_p2_2"
+            android:id="@+id/cardP2_2"
             android:layout_width="100dp"
             android:layout_height="150dp"
             android:scaleType="centerInside"
@@ -91,7 +91,7 @@
 
         </ImageView>
         <ImageView
-            android:id="@+id/card_p2_3"
+            android:id="@+id/cardP2_3"
             android:layout_width="100dp"
             android:layout_height="150dp"
             android:scaleType="centerInside"
@@ -101,7 +101,7 @@
 
         </ImageView>
         <ImageView
-            android:id="@+id/card_p2_4"
+            android:id="@+id/cardP2_4"
             android:layout_width="100dp"
             android:layout_height="150dp"
             android:scaleType="centerInside"
