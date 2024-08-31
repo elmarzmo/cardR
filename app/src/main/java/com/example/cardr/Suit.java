@@ -4,7 +4,7 @@ public enum Suit {
 COINS("coins"),
 CUPS("cups"),
 CLUBS("clubs"),
-SOWRDS("sowrds");
+SWORDS("swords");
 	
 	private final String suitText;
 	
