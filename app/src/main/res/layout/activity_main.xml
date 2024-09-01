@@ -63,13 +63,19 @@
 
     </LinearLayout>
 
+    <Button
+        android:id="@+id/start_game_button"
+        android:layout_width="256dp"
+        android:layout_height="86dp"
+        android:layout_centerInParent="true"
+        android:text="Start"></Button>
     <LinearLayout
         android:id="@+id/lay_points"
         android:layout_width="match_parent"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
         android:layout_height="wrap_content">
-
+        <!-- player2 cards -->
         <ImageView
             android:id="@+id/cardP2_1"
             android:layout_width="100dp"

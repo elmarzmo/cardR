@@ -1,5 +1,7 @@
 package com.example.cardr;
 
+import java.util.Objects;
+
 public class Card {
 //private fields
 	private Suit suit;
@@ -22,9 +24,23 @@ public class Card {
 	
 	@Override
 	public String toString() {
-		String str= rank.getRank() +" of " +suit.getSuit();
+		String str= rank.getRank() +"_of_" +suit.getSuit();
 		return str;
 	}
-
+	@Override
+	public boolean equals(Object obj){
+		if(this==obj){
+			return true;
+		}
+		if (obj == null || getClass() != obj.getClass()){
+			return false;
+		}
+		Card card = (Card) obj;
+		return rank == card.rank && suit == card.suit;
+	}
+	@Override
+	public int hashCode(){
+		return Objects.hash(suit,rank);
+	}
 
 }

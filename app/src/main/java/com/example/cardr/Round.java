@@ -64,7 +64,7 @@ public class Round {
 		
 		System.out.println("Player "+ playerNum + "'s turn. Your hand: "+ playerHand);
 		System.out.println("Current table: "+ table);
-		Card cardToPlay = playerHand.chooseCard();
+		Card cardToPlay =  playerHand.getCards().get(0);
 		//Remove the card from the players hand
 		playerHand.remove(cardToPlay);
 		boolean matchFound =false;

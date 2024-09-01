@@ -7,7 +7,7 @@ public class Hand {
 	private ArrayList<Card> cards;
 	private Suit suit;
 	private Rank rank;
-	
+
 	//Constructor
 	public Hand() {
 		cards = new ArrayList<Card>();
@@ -35,7 +35,7 @@ public class Hand {
 		return str;
 	}
 	public Card getCard(int Rank) {
-	
+
 		for(Card card: cards) {
 			if(card.getRank()== Rank) {
 				return card;
@@ -43,17 +43,17 @@ public class Hand {
 		}
 		return null;
 	}
-	
-	public Card chooseCard() {
+
+	/*public Card chooseCard() {
 		Scanner scanner = new Scanner(System.in);
 		 while(true) {
-			 
+
 			 System.out.println("Choose a card from your hand:");
 			 String chosenCard = scanner.nextLine();
 			  //fine the card in hand
 			 for(Card c :cards) {
 				 if(c.toString().equalsIgnoreCase(chosenCard)) {
-					 cards.remove(c);
+				 cards.remove(c);
 				 return c;
 				 }
 			 }
@@ -61,8 +61,9 @@ public class Hand {
 	            System.out.println("Invalid choice. Please choose a card from your hand.");
 	            scanner.close();
 		 }
-		 
-	}
+
+	}*/
+
 
 @Override
 public String toString() {
