@@ -12,6 +12,7 @@ public class Round {
 	boolean lastToEat = true;
 	private ArrayList<Card> eatenCardPlayer1 = new ArrayList<>();
 	private ArrayList<Card> eatenCardPlayer2 = new ArrayList<>();
+	private OnCardSelectedListener cardSelectedListener;
 	
 	public Round(Deck deck, Hand player1Hand, Hand player2Hand, Hand table, int player1Score, int player2Score) {
 			this.deck = deck;
@@ -24,6 +25,9 @@ public class Round {
 			
 			
 	}
+	public void setOnCardSelectedListener(OnCardSelectedListener listener){
+			this.cardSelectedListener = listener;
+	}
 	public void play() {
 		for(int j =0; j<5; j++) {
 			System.out.println("Round: "+(j+1));
@@ -33,11 +37,13 @@ public class Round {
 		}
 		
 	     while(!player1Hand.isEmpty() || !player2Hand.isEmpty()) {
-	    	 playTurn(player1Hand, 1);
+
+
+			 waitForCardSelection(player1Hand,1);
 	    	 if(player2Hand.isEmpty()) {
 	    		 break;
 	    	 }
-	    	 playTurn(player2Hand,2);
+			 waitForCardSelection(player2Hand,2);
 	     }
 	     System.out.println("Player 1 Score: "+ eatenCardPlayer1.size());
 		 System.out.println("Player 2 Score: "+ eatenCardPlayer2.size());
@@ -60,11 +66,9 @@ public class Round {
 	     declareWinner();
 	
 	}
-	private void playTurn(Hand playerHand, int playerNum) {
+	private void playTurn(Hand playerHand, int playerNum,Card cardToPlay) {
 		
-		System.out.println("Player "+ playerNum + "'s turn. Your hand: "+ playerHand);
-		System.out.println("Current table: "+ table);
-		Card cardToPlay =  playerHand.getCards().get(0);
+
 		//Remove the card from the players hand
 		playerHand.remove(cardToPlay);
 		boolean matchFound =false;
@@ -146,4 +150,22 @@ public class Round {
 			System.out.println("it's a tie!");
 		}
 	}
+
+	private void waitForCardSelection(Hand playerHand, int playerNum){
+		System.out.println("Player "+ playerNum + "'s turn. Your hand: "+ playerHand);
+		System.out.println("Current table: "+ table);
+		//fix this
+		//trigger the UI to allow the player to select a card
+
+	}
+	public void onCardSelected(Card selectedCard){
+		if (player1Hand.contains(selectedCard)) {
+			playTurn(player1Hand, 1, selectedCard);
+		} else if (player2Hand.contains(selectedCard)) {
+			playTurn(player2Hand, 2, selectedCard);
+		}
+	}
+
+
+
 }

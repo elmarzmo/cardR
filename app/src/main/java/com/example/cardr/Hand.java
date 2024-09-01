@@ -13,9 +13,11 @@ public class Hand {
 		cards = new ArrayList<Card>();
 	}
 	public void clear() {
+
 		cards.clear();
 	}
 	public void add(Card card) {
+
 		cards.add(card);
 	}
 	public boolean isEmpty() {
@@ -63,7 +65,9 @@ public class Hand {
 		 }
 
 	}*/
-
+	public boolean contains(Card card) {
+		return cards.contains(card);
+	}
 
 @Override
 public String toString() {

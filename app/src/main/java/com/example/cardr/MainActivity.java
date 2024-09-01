@@ -12,10 +12,11 @@ import java.util.Locale;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements OnCardSelectedListener{
     private ImageView cardP1_1, cardP1_2,  cardP1_3,  cardP1_4;
     private ImageView cardP2_1, cardP2_2,  cardP2_3,  cardP2_4;
 
+    private Round round;
     private Hand player1Hand;
     private Hand player2Hand;
 
@@ -52,6 +53,10 @@ public class MainActivity extends AppCompatActivity {
         setCardTouchListener(cardP1_3,2);
         setCardTouchListener(cardP1_4,3);
     }
+    @Override
+    public void onCardSelected(Card selectedCard){
+        round.onCardSelected(selectedCard);
+    }
     private void setCardTouchListener(ImageView cardImageView,final int cardIndex ){
         cardImageView.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -75,9 +80,11 @@ public class MainActivity extends AppCompatActivity {
         Hand player2Hand = new Hand();
         Hand table = new Hand();
 
-        Round round = new Round(deck, player1Hand, player2Hand,table,0,0);
+         round = new Round(deck, player1Hand, player2Hand,table,0,0);
+        round.setOnCardSelectedListener(this);  // Set the listener
         round.play();
         dealInitialCard(player1Hand,player2Hand);
+
     }
     private void updateCardImage(ImageView cardImageView, Card card){
         // Generate the filename using the rank and suit
