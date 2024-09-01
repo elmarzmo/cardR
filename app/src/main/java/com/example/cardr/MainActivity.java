@@ -55,7 +55,11 @@ public class MainActivity extends AppCompatActivity implements OnCardSelectedLis
     }
     @Override
     public void onCardSelected(Card selectedCard){
-        round.onCardSelected(selectedCard);
+        if(selectedCard!=null) {
+            round.onCardSelected(selectedCard);
+        }else{
+            enableCardSelection();
+        }
     }
     private void setCardTouchListener(ImageView cardImageView,final int cardIndex ){
         cardImageView.setOnTouchListener(new View.OnTouchListener() {
@@ -73,6 +77,12 @@ public class MainActivity extends AppCompatActivity implements OnCardSelectedLis
                 return false;
             }
         });
+    }
+    private void enableCardSelection(){
+        setCardTouchListener(cardP1_1,0);
+        setCardTouchListener(cardP1_2,1);
+        setCardTouchListener(cardP1_2,2);
+        setCardTouchListener(cardP1_2,3);
     }
     public void initializeGame(){
         Deck deck = new Deck();

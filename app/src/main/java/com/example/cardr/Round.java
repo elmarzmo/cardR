@@ -154,9 +154,11 @@ public class Round {
 	private void waitForCardSelection(Hand playerHand, int playerNum){
 		System.out.println("Player "+ playerNum + "'s turn. Your hand: "+ playerHand);
 		System.out.println("Current table: "+ table);
-		//fix this
+		//FIXME
 		//trigger the UI to allow the player to select a card
-
+		if(cardSelectedListener != null){
+			cardSelectedListener.onCardSelected(null);
+		}
 	}
 	public void onCardSelected(Card selectedCard){
 		if (player1Hand.contains(selectedCard)) {
