@@ -24,7 +24,7 @@ public class Card {
 	
 	@Override
 	public String toString() {
-		String str= rank.getRank() +"_of_" +suit.getSuit();
+		String str= suit.getSuit() +"_of_" +rank.getRank();
 		return str;
 	}
 	@Override

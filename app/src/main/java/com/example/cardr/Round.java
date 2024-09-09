@@ -28,7 +28,13 @@ public class Round {
 	public void setOnCardSelectedListener(OnCardSelectedListener listener){
 			this.cardSelectedListener = listener;
 	}
-	public void play() {
+	public void play(){
+		for(int i=0; i<4; i++) {
+			player1Hand.add(deck.dealCard());
+			player2Hand.add(deck.dealCard());
+		}
+	}
+	/*public void play() {
 		for(int j =0; j<5; j++) {
 			System.out.println("Round: "+(j+1));
 		for(int i=0; i<4; i++) {
@@ -40,6 +46,7 @@ public class Round {
 
 
 			 waitForCardSelection(player1Hand,1);
+
 	    	 if(player2Hand.isEmpty()) {
 	    		 break;
 	    	 }
@@ -65,7 +72,7 @@ public class Round {
 		
 	     declareWinner();
 	
-	}
+	}*/
 	private void playTurn(Hand playerHand, int playerNum,Card cardToPlay) {
 		
 

@@ -95,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements OnCardSelectedLis
         round.play();
         dealInitialCard(player1Hand,player2Hand);
 
+
     }
     private void updateCardImage(ImageView cardImageView, Card card){
         // Generate the filename using the rank and suit
