@@ -89,6 +89,7 @@ public class MainActivity extends AppCompatActivity implements OnCardSelectedLis
         Hand player1Hand = new Hand();
         Hand player2Hand = new Hand();
         Hand table = new Hand();
+        deck.shuffle();
 
          round = new Round(deck, player1Hand, player2Hand,table,0,0);
         round.setOnCardSelectedListener(this);  // Set the listener

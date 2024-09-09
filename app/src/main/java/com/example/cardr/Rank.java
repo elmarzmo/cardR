@@ -8,9 +8,9 @@ FOUR(4),
 FIVE(5),
 SIX(6),
 SEVEN(7),
-TEN(10),
-ELEVEN(11),
-TWELVE(12);
+TEN(8),
+ELEVEN(9),
+TWELVE(10);
 
 private final int rankValue;
 //Constructor
