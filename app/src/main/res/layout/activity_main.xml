@@ -118,4 +118,18 @@
 
         </ImageView>
     </LinearLayout>
-    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="332dp"
+        android:layout_height="613dp">
+
+        <ImageView
+            android:id="@+id/player_card_on_table"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/played_card_area"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="Player card on table" />
+    </LinearLayout>
+
+</RelativeLayout>

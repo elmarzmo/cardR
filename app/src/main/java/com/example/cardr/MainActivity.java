@@ -13,6 +13,7 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
     private ImageView cardP1_1, cardP1_2, cardP1_3, cardP1_4;
     private ImageView cardBot_1, cardBot_2, cardBot_3, cardBot_4;
+    private ImageView playerCardOnTable;
     private boolean isPlayer1Turn = true;
 
     private Hand player1Hand;
@@ -34,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
         cardBot_2 = findViewById(R.id.cardBot_2);
         cardBot_3 = findViewById(R.id.cardBot_3);
         cardBot_4 = findViewById(R.id.cardBot_4);
+
+        playerCardOnTable = findViewById(R.id.player_card_on_table);
 
         // Find the start game button
         Button startGameButton = findViewById(R.id.start_game_button);
@@ -75,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
     private void handlePlayerCardClick(int cardIndex) {
         if (isPlayer1Turn) {
             Card selectedCard = player1Hand.getCards().get(cardIndex);
+            updateCardImage(playerCardOnTable, selectedCard);
             playCard(selectedCard);
             player1Hand.remove(selectedCard);
             refreshPlayerHandImages();
@@ -90,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
         Random random = new Random();
         int randomCardIndex = random.nextInt(botHand.getCards().size());
         Card botCard = botHand.getCards().get(randomCardIndex);
+        updateCardImage(playerCardOnTable, botCard);
 
         // Play the bot's card and remove it from the hand
         playCard(botCard);
