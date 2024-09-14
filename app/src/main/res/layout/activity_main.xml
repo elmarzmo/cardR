@@ -11,7 +11,7 @@
         android:id="@+id/player1_cards"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
         android:orientation="horizontal"
         android:gravity="center"
         >
@@ -72,12 +72,13 @@
     <LinearLayout
         android:id="@+id/lay_points"
         android:layout_width="match_parent"
-        android:layout_alignParentBottom="true"
+
+        android:layout_alignParentTop="true"
         android:orientation="horizontal"
         android:layout_height="wrap_content">
         <!-- player2 cards -->
         <ImageView
-            android:id="@+id/cardP2_1"
+            android:id="@+id/cardBot_1"
             android:layout_width="100dp"
             android:layout_height="150dp"
             android:scaleType="centerInside"
@@ -87,7 +88,7 @@
 
         </ImageView>
         <ImageView
-            android:id="@+id/cardP2_2"
+            android:id="@+id/cardBot_2"
             android:layout_width="100dp"
             android:layout_height="150dp"
             android:scaleType="centerInside"
@@ -97,7 +98,7 @@
 
         </ImageView>
         <ImageView
-            android:id="@+id/cardP2_3"
+            android:id="@+id/cardBot_3"
             android:layout_width="100dp"
             android:layout_height="150dp"
             android:scaleType="centerInside"
@@ -107,7 +108,7 @@
 
         </ImageView>
         <ImageView
-            android:id="@+id/cardP2_4"
+            android:id="@+id/cardBot_4"
             android:layout_width="100dp"
             android:layout_height="150dp"
             android:scaleType="centerInside"

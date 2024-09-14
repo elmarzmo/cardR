@@ -13,7 +13,7 @@ public class Round {
 	private ArrayList<Card> eatenCardPlayer1 = new ArrayList<>();
 	private ArrayList<Card> eatenCardPlayer2 = new ArrayList<>();
 	private OnCardSelectedListener cardSelectedListener;
-	
+
 	public Round(Deck deck, Hand player1Hand, Hand player2Hand, Hand table, int player1Score, int player2Score) {
 			this.deck = deck;
 			this.player1Hand= player1Hand;
@@ -32,6 +32,18 @@ public class Round {
 		for(int i=0; i<4; i++) {
 			player1Hand.add(deck.dealCard());
 			player2Hand.add(deck.dealCard());
+		}
+	}
+	public void playTur(Hand player1Hand,Hand player2Hand){
+		while(!player1Hand.isEmpty() || !player2Hand.isEmpty()) {
+
+
+			waitForCardSelection(player1Hand,1);
+
+			if(player2Hand.isEmpty()) {
+				break;
+			}
+			waitForCardSelection(player2Hand,2);
 		}
 	}
 	/*public void play() {
@@ -163,8 +175,11 @@ public class Round {
 		System.out.println("Current table: "+ table);
 		//FIXME
 		//trigger the UI to allow the player to select a card
-		if(cardSelectedListener != null){
+		if (cardSelectedListener != null) {
+				System.out.println("Waiting for player " + playerNum + " to select a card...");
 			cardSelectedListener.onCardSelected(null);
+		}else {
+			System.err.println("No card selection listener is set!");
 		}
 	}
 	public void onCardSelected(Card selectedCard){
