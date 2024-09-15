@@ -13,7 +13,7 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
     private ImageView cardP1_1, cardP1_2, cardP1_3, cardP1_4;
     private ImageView cardBot_1, cardBot_2, cardBot_3, cardBot_4;
-    private ImageView playerCardOnTable;
+    private ImageView playerCardOnTable1,playerCardOnTable2,playerCardOnTable3,playerCardOnTable4,playerCardOnTable5,playerCardOnTable6,playerCardOnTable7,playerCardOnTable8;
     private boolean isPlayer1Turn = true;
 
     private Hand player1Hand;
@@ -36,8 +36,10 @@ public class MainActivity extends AppCompatActivity {
         cardBot_3 = findViewById(R.id.cardBot_3);
         cardBot_4 = findViewById(R.id.cardBot_4);
 
-        playerCardOnTable = findViewById(R.id.player_card_on_table);
-
+        playerCardOnTable1 = findViewById(R.id.player_card_on_table1);
+        playerCardOnTable2 = findViewById(R.id.player_card_on_table2);
+        playerCardOnTable3 = findViewById(R.id.player_card_on_table3);
+        playerCardOnTable4 = findViewById(R.id.player_card_on_table4);
         // Find the start game button
         Button startGameButton = findViewById(R.id.start_game_button);
 
@@ -69,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupCardClickListeners() {
+
         cardP1_1.setOnClickListener(v -> handlePlayerCardClick(0));
         cardP1_2.setOnClickListener(v -> handlePlayerCardClick(1));
         cardP1_3.setOnClickListener(v -> handlePlayerCardClick(2));
@@ -78,7 +81,8 @@ public class MainActivity extends AppCompatActivity {
     private void handlePlayerCardClick(int cardIndex) {
         if (isPlayer1Turn) {
             Card selectedCard = player1Hand.getCards().get(cardIndex);
-            updateCardImage(playerCardOnTable, selectedCard);
+            ImageView tableSpot = emptySpot();
+            updateCardImage(emptySpot(), selectedCard);
             playCard(selectedCard);
             player1Hand.remove(selectedCard);
             refreshPlayerHandImages();
@@ -94,7 +98,8 @@ public class MainActivity extends AppCompatActivity {
         Random random = new Random();
         int randomCardIndex = random.nextInt(botHand.getCards().size());
         Card botCard = botHand.getCards().get(randomCardIndex);
-        updateCardImage(playerCardOnTable, botCard);
+        ImageView tableSpot = emptySpot();
+        updateCardImage(tableSpot, botCard);
 
         // Play the bot's card and remove it from the hand
         playCard(botCard);
@@ -110,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void playCard(Card card) {
         // Handle the logic when a card is played (e.g., update game state)
-        Toast.makeText(this, "Card played: " + card.getRank() + " of " + card.getSuit(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Card played: " + card.getSuit() + "_of_" + card.getRank(), Toast.LENGTH_SHORT).show();
     }
 
     private void updatePlayerHandUI(Hand hand, ImageView[] cardViews) {
@@ -120,14 +125,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateBotHandPlaceholder() {
-        // Update the bot's hand UI, or leave placeholders for now
-        cardBot_1.setImageResource(R.drawable.back_large);  // Example for showing card back
-        cardBot_2.setImageResource(R.drawable.back_large);
-        cardBot_3.setImageResource(R.drawable.back_large);
-        cardBot_4.setImageResource(R.drawable.back_large);
+        ImageView[] botCardViews = {cardBot_1, cardBot_2, cardBot_3, cardBot_4};
+
+        // Clear all bot's card views first
+        for (ImageView botCardView : botCardViews) {
+            botCardView.setImageResource(0); // Reset the ImageView
+        }
+
+        // Update only the remaining cards with the card back image
+        for (int i = 0; i < botHand.getCards().size(); i++) {
+            botCardViews[i].setImageResource(R.drawable.back_large);  // Show card back
+        }
+
     }
 
+
     private void refreshPlayerHandImages() {
+        cardP1_1.setImageResource(0);
+        cardP1_2.setImageResource(0);
+        cardP1_3.setImageResource(0);
+        cardP1_4.setImageResource(0);
+
         updatePlayerHandUI(player1Hand, new ImageView[]{cardP1_1, cardP1_2, cardP1_3, cardP1_4});
     }
 
@@ -136,5 +154,25 @@ public class MainActivity extends AppCompatActivity {
         String imageName = card.getSuit().toLowerCase() + "_of_" + card.getRank();
         int imageResource = getResources().getIdentifier(imageName, "drawable", getPackageName());
         cardImageView.setImageResource(imageResource);
+    }
+    private ImageView emptySpot(){
+        // Check each player card spot on the table to find an empty one
+        if (playerCardOnTable1.getDrawable() == null) {
+            return playerCardOnTable1;
+        } else if (playerCardOnTable2.getDrawable() == null) {
+            return playerCardOnTable2;
+        } else if (playerCardOnTable3.getDrawable() == null) {
+            return playerCardOnTable3;
+        } else if (playerCardOnTable4.getDrawable() == null) {
+            return playerCardOnTable4;
+        }
+     else if (playerCardOnTable5.getDrawable() == null) {
+        return playerCardOnTable5;
+    }else if (playerCardOnTable6.getDrawable() == null) {
+            return playerCardOnTable6;
+        }else {
+            Toast.makeText(this, "No empty spots left!", Toast.LENGTH_SHORT).show();
+            return null; // No more spots
+        }
     }
 }

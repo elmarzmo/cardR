@@ -120,16 +120,41 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="332dp"
-        android:layout_height="613dp">
+        android:layout_width="377dp"
+        android:layout_height="415dp"
+        android:layout_centerInParent="true">
 
         <ImageView
-            android:id="@+id/player_card_on_table"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@id/played_card_area"
-            android:layout_centerHorizontal="true"
-            android:contentDescription="Player card on table" />
+            android:id="@+id/player_card_on_table1"
+            android:layout_width="100dp"
+            android:layout_height="167dp"
+            android:layout_weight="0" />
+        <ImageView
+            android:id="@+id/player_card_on_table2"
+            android:layout_width="100dp"
+            android:layout_height="167dp"
+            android:layout_weight="0" />
+
+        <ImageView
+            android:id="@+id/player_card_on_table3"
+            android:layout_width="100dp"
+            android:layout_height="167dp"
+            android:layout_weight="0" />
+        <ImageView
+            android:id="@+id/player_card_on_table4"
+            android:layout_width="100dp"
+            android:layout_height="249dp"
+            android:layout_weight="0" />
+        <ImageView
+            android:id="@+id/player_card_on_table5"
+            android:layout_width="100dp"
+            android:layout_height="249dp"
+            android:layout_weight="0" />
+        <ImageView
+            android:id="@+id/player_card_on_table6"
+            android:layout_width="100dp"
+            android:layout_height="249dp"
+            android:layout_weight="0" />
     </LinearLayout>
 
 </RelativeLayout>
